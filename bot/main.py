@@ -34,5 +34,7 @@ client = MyClient()
 async def register(interaction: discord.Interaction, user: discord.User):
     print(user.name,"Ran this command")
     await interaction.response.send_message(f"Hello {user.name}")
+    await user.create_dm()
+    await user.dm_channel.send("Thank you for registering with ACME")
 
 client.run(os.getenv("DISCORD_TOKEN"))
