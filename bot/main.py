@@ -18,7 +18,6 @@ class MyClient(discord.Client):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
 
-    
     async def on_message(self, message: discord.Message):
         print(f'Message from {message.author}: {message.content}')
         print(message.author,self.user)
@@ -32,8 +31,8 @@ class MyClient(discord.Client):
 client = MyClient()
 
 @client.tree.command(description="Register for the service")
-async def register(interaction: discord.Interaction, member: discord.Member):
-    print(member.name,"Ran this command")
-    await interaction.response.send_message(f"Hello {member.name}")
+async def register(interaction: discord.Interaction, user: discord.User):
+    print(user.name,"Ran this command")
+    await interaction.response.send_message(f"Hello {user.name}")
 
 client.run(os.getenv("DISCORD_TOKEN"))
